@@ -1,7 +1,9 @@
 class File_writer:
 
-    def Write(self, file_name, links_and_names):
+    def Write(self, links_and_names):
         file = []
+
+        file_name = 'PF_news'
 
         file_path = input("Путь до файла (\"1\" — в папку с main.py, или по указанному пути):\n")
 
@@ -13,7 +15,6 @@ class File_writer:
                 file_path += '\\'
             file = open(file_path + file_name + '.txt', 'w')
 
-        counter = 0
         for i in links_and_names:
             for key in i.keys():
                 file.write(i[key] + '\n')

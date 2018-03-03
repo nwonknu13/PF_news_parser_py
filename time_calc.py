@@ -2,13 +2,26 @@ import datetime
 
 class Time_calc:
 
-    def Set_seconds_limit(self, limit, now_):
+    now_ = []
+    seconds_limit = []
+
+    def __init__(self, limit):
+        self.now_ = self.Datetime_now()
+        self.seconds_limit = self.Set_seconds_limit(limit)
+
+
+    def Datetime_now(self):
+        return datetime.datetime.now()
+
+
+    def Set_seconds_limit(self, limit):
 
         seconds_limit = 0
 
         if (limit == 'M'):
-            a_month_ago = now_
-            if (now_.month > 1):
+            a_month_ago = self.now_
+            now_ = self.now_
+            if (self.now_.month > 1):
                 a_month_ago = datetime.datetime(now_.year, (now_.month - 1), now_.day, now_.hour, now_.minute,
                                                 now_.second,
                                                 now_.microsecond, now_.tzinfo)
@@ -33,9 +46,9 @@ class Time_calc:
         return datetime_story
 
 
-    def Limit_is_exceeded(self, now_, meta_info, seconds_limit):
+    def Limit_is_exceeded(self, meta_info):
 
         datetime_story = self.Create_datetime_story(meta_info)
-        time_delta = now_ - datetime_story
-        limit_is_exceeded = time_delta.total_seconds() > seconds_limit
+        time_delta = self.now_ - datetime_story
+        limit_is_exceeded = time_delta.total_seconds() > self.seconds_limit
         return limit_is_exceeded
