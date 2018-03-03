@@ -27,6 +27,14 @@ class Link_and_Name:
         return string_
 
 
+    def Create(self, link_with_name, number):
+        self.link_and_name[self.str_number] = number
+        self.link_and_name[self.str_name] = link_with_name.contents[0]
+        self.link_and_name[self.str_link] = self.link_main + link_with_name.get('href')
+        self.link_and_name[self.str_amount_of_chapters] = 1
+        return self.Get_self()
+
+
     def One_more_chapter(self):
         self.link_and_name[self.str_amount_of_chapters] += 1
 
